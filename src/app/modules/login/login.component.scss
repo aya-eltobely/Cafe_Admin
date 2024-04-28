@@ -1,0 +1,31 @@
+.loginDiv
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* 100% of the viewport height */
+}
+
+.loginForm
+{
+  padding: 90px 90px;
+  border-radius: 5px;
+  background: #fff;
+  box-shadow: 7px 5px 10px -7px rgba(0,0,0,0.75);
+}
+
+
+.loginForm input
+{
+   
+    padding: 0 12px;
+   
+}
+.loginForm .submitBtn
+{
+    background-color: #4B49AC;
+    color: white;
+    padding: 5px 20px;
+    border: 1px solid #4B49AC;
+  box-shadow: 5px 5px 16px #4B49AC;
+}

@@ -1,0 +1,46 @@
+
+
+<div class="loginDiv" >
+    <form [formGroup]="loginForm" class="loginForm" >
+
+        <div>
+            <mat-form-field class="w-full">
+    
+                <mat-label >  User Name</mat-label>
+                <input matInput formControlName="UserName">
+                <!-- @if (loginForm.get('username')?.hasError("required") && loginForm.get('username')?.touched ) {
+                    <small style="color: red;"> user name is required </small> 
+    
+                } -->
+    
+              </mat-form-field>
+    
+            
+            
+        </div>
+    
+        <div>
+    
+            <div class="example-container">
+                <mat-form-field>
+                  <mat-label> Password</mat-label>
+                  <input matInput [type]="hide ? 'password' : 'text'" formControlName="Password">
+                  <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                  </button>
+    
+                  <!-- @if (loginForm.get('password')?.hasError("required") && loginForm.get('password')?.touched ) {
+                    <small> password is required </small>
+                } -->
+                </mat-form-field>
+    
+            </div>
+    
+    
+        </div>
+    
+        <button mat-raised-button class="submitBtn   rounded"   (click)="submitForm()" >Log In</button>
+    
+    </form>
+    
+</div>

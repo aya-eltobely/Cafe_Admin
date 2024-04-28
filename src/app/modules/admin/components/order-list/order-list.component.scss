@@ -1,0 +1,18 @@
+:host::ng-deep.mat-mdc-standard-chip .mdc-evolution-chip__cell--primary
+{
+    background-color: #F3797E !important;
+    color: white !important;
+    border-radius: 4px !important;
+
+}
+
+
+:host::ng-deep.mat-mdc-standard-chip:not(.mdc-evolution-chip--disabled) .mdc-evolution-chip__text-label
+{
+    color: white !important;
+}
+
+h1
+{
+    font-family: "Edu VIC WA NT Beginner", cursive;
+}

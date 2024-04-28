@@ -1,0 +1,29 @@
+<div class="p-10">
+    <h1> Choose delivery to assign .. </h1>
+
+    <form [formGroup]="selectedDeliveryForm">
+
+        <mat-form-field class="w-full">
+            <mat-label>Select Delivery</mat-label>
+            <mat-select formControlName="deliveryId">
+                <mat-option *ngFor="let item of allDelivery" [value]="item.deliveryId"> {{item.firstName}} {{item.lastName}} </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+    </form>
+
+
+    <mat-dialog-actions class="w-full">
+
+        <button mat-raised-button class="BgPurpleColor"  
+            (click)="onAssign()">
+            Assign
+        </button>
+
+        <button mat-stroked-button   (click)="onClose()">Close</button>
+        
+    </mat-dialog-actions>
+
+
+
+</div>

@@ -1,0 +1,79 @@
+<div class="p-10  " style="overflow: scroll;">
+
+
+    <h1> Add Product </h1>
+  
+    <form [formGroup]="addProductForm">
+  
+        <!-- name -->
+      <mat-form-field class="example-full-width w-full">
+        <mat-label>Product Name</mat-label>
+        <input matInput formControlName="name">
+  
+        <mat-error class="text-[red]"
+          *ngIf="addProductForm.get('name')?.hasError('required') && addProductForm.get('name')?.touched "> Name
+          is required </mat-error>
+      </mat-form-field>
+  
+      <!-- price -->
+      <mat-form-field class="example-full-width w-full">
+        <mat-label>Price</mat-label>
+        <input matInput formControlName="price" type="number">
+  
+        <mat-error class="text-[red]"
+          *ngIf="addProductForm.get('price')?.hasError('required') && addProductForm.get('price')?.touched "> Price
+          is required </mat-error>
+      </mat-form-field>
+
+      <!-- descrption -->
+      <mat-form-field class="example-full-width w-full">
+        <mat-label>Descrption</mat-label>
+        <input matInput formControlName="description">
+  
+        <mat-error class="text-[red]"
+          *ngIf="addProductForm.get('description')?.hasError('required') && addProductForm.get('description')?.touched "> Description
+          is required </mat-error>
+      </mat-form-field>
+
+        <!-- subcategory name -->
+      <mat-form-field class="example-full-width w-full">
+        <mat-label>Sub Category Name</mat-label>
+        <mat-select formControlName="subCategoryId">
+          <mat-option *ngFor="let item of allSubcategoryt()" [value]="item.id"> {{item.name}} </mat-option>
+        </mat-select>
+        <mat-error class="text-[red]"
+          *ngIf="addProductForm.get('subCategoryId')?.hasError('required') && addProductForm.get('subCategoryId')?.touched ">
+          Category Name is required </mat-error>
+      </mat-form-field>
+  
+      <div class="flex  my-4 w-full">
+        <input type="file" accept="image/*" id="upload22" hidden (click)="isImageError.set(true);"
+          (change)="onFileSelected($event)" />
+        <label for="upload22"
+          class="border-[2px] border-dashed lg:py-8 lg:px-28 text-[#7c4e27] p-2 rounded  border-[#7c4e27] ">
+          <p>
+            Upload Sub Category Image
+          </p>
+          <div class="w-16 flex">
+            <img *ngIf="previewImg" [src]="previewImg" class="preview w-16" />
+          </div>
+        </label>
+      </div>
+      <span class="text-[red]" *ngIf="isImageError()"> Image is required </span>
+  
+    </form>
+  
+  
+  
+  
+  
+    <div class="w-full">
+      <button mat-raised-button class="mr-2 BgPurpleColor"
+        (click)="onAddData()" >
+        Add
+      </button>
+  
+      <button mat-stroked-button   (click)="onClose()">Close</button>
+    </div>
+  
+  </div>

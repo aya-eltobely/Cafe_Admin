@@ -1,0 +1,15 @@
+<div class="p-10">
+    <h1> Are you sure to  {{data.activate == 'activate'  ? 'Deactivate' : 'Activate' }} User ? </h1>
+
+    <mat-dialog-actions class="w-full">
+        <button mat-raised-button class="BgPurpleColor" 
+            (click)="onDeactivate()">
+            {{data.activate == 'activate'  ? 'Deactivate' : 'Activate' }}
+        </button>
+
+        <button mat-stroked-button (click)="onClose()">Close</button>
+    </mat-dialog-actions>
+
+
+
+</div>

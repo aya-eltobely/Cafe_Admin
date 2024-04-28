@@ -1,0 +1,53 @@
+<div class="container ">
+
+  <!-- <div class="navbar fixed top-0 right-0 w-full" *ngIf="!isLoggedView()">
+    <app-navbar></app-navbar>
+  </div> -->
+
+  <div class="flex w-full">
+
+
+    <div class=" text-black " style="width: 100%;">
+                   
+      <div class="w-full" *ngIf="!isLoggedView()">
+        <app-navbar></app-navbar>
+
+        <div class="flex ">
+          <aside class=" bg-white text-black border  overflow-y-auto w-60 pt-[30px] h-[100vh]" style="box-shadow: 21px 14px 25px -27px rgba(82,72,82,1);" *ngIf="!isLoggedView()">
+            <div class="p-4  ">
+              <!-- <h1 class="text-lg font-semibold">  -->
+                <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}"  class=" hover:bg-[#4B49AC] hover:text-white hover:pl-3 hover:rounded  py-4 flex items-center justify-start gap-2"><mat-icon>dashboard</mat-icon> Dashboard</a> 
+                <!-- </h1> -->
+              <ul class="mt-4 space-y-2">
+                <li><a routerLink="/categorylist" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}"  class=" hover:bg-[#4B49AC] hover:text-white hover:pl-3 hover:rounded  py-4 flex items-center justify-start gap-2"><mat-icon> category </mat-icon> Category</a></li>
+                <li><a routerLink="/subcategorylist" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}"  class="  hover:bg-[#4B49AC] hover:text-white hover:pl-3 hover:rounded py-4 flex items-center justify-start gap-2"><mat-icon> layers</mat-icon> Sub Category</a></li>
+                <li><a routerLink="/delivery" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}"  class=" hover:bg-[#4B49AC] hover:text-white hover:pl-3 hover:rounded py-4 flex items-center justify-start gap-2"><mat-icon> local_shipping</mat-icon> Delivery</a></li>
+                <li><a routerLink="/user" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}"  class="  hover:bg-[#4B49AC] hover:text-white hover:pl-3 hover:rounded py-4 flex items-center justify-start gap-2"><mat-icon>people</mat-icon> User</a></li>
+                <li><a routerLink="/product" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}"  class="  hover:bg-[#4B49AC] hover:text-white hover:pl-3 hover:rounded py-4 flex items-center justify-start gap-2"><mat-icon>store</mat-icon> Product</a></li>
+                <li><a routerLink="/order" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}"  class="  hover:bg-[#4B49AC] hover:text-white hover:pl-3 hover:rounded py-4 flex items-center justify-start gap-2"><mat-icon>shopping_cart</mat-icon> Order</a></li>
+      
+              </ul>
+            </div>
+          </aside>
+
+          <div class="m-3  w-full h-[100vh]">
+            <router-outlet></router-outlet>
+          </div>
+
+        </div>
+    
+
+      </div>
+
+      
+
+    </div>
+
+  </div>
+
+
+  <div class="footer" *ngIf="isLoggedView()">
+    <router-outlet></router-outlet>
+  </div>
+
+</div>

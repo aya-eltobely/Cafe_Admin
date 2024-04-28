@@ -1,0 +1,127 @@
+<div class="flex justify-between">
+
+  <h1 style="font-family:'Edu VIC WA NT Beginner', cursive">Statistics</h1>
+
+  <form [formGroup]="formDate" class="flex justify-start gap-2" >
+
+    <mat-form-field color="accent">
+      <mat-label>Date</mat-label>
+      <input formControlName="date" matInput [matDatepicker]="picker1" class="rounded">
+      <mat-hint>MM/DD/YYYY</mat-hint>
+      <mat-datepicker-toggle matIconSuffix [for]="picker1"></mat-datepicker-toggle>
+      <mat-datepicker #picker1></mat-datepicker>
+    </mat-form-field>
+  
+  
+    <div class="pt-3">
+      <button mat-stroked-button color="primary" (click)="onSearch()" >Search</button>
+    </div>
+  
+  </form>
+
+</div>
+
+
+<div class="grid grid-cols-3 gap-3 mt-11">
+
+  <mat-card class="example-card">
+    <mat-card-header class="flex justify-between">
+      <mat-card-title>No. Orders</mat-card-title>
+      <div>
+        <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+          <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item (click)="onFilter(1,'order')">
+            <span>Daily</span>
+          </button>
+          <button mat-menu-item (click)="onFilter(2,'order')">
+            <span>Monthly</span>
+          </button>
+          <button mat-menu-item (click)="onFilter(3,'order')">
+            <span>Yearly</span>
+          </button>
+        </mat-menu>
+     
+      </div>
+    </mat-card-header>
+    <mat-card-content class="justify-center items-center h-full" style="display: flex !important;">
+      <p class="text-4xl text-center text-[#4a49ac] text-[40px]">{{numberOfOrders}}</p>
+    </mat-card-content>
+  </mat-card>
+
+
+  <mat-card class="example-card">
+    <mat-card-header class="flex justify-between">
+      <mat-card-title>Total Revenue</mat-card-title>
+      <div>
+        <button mat-icon-button [matMenuTriggerFor]="menu2" aria-label="Example icon-button with a menu">
+          <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #menu2="matMenu">
+          <button mat-menu-item (click)="onFilter(1,'price')">
+            <span>Daily</span>
+          </button>
+          <button mat-menu-item (click)="onFilter(2,'price')">
+            <span>Monthly</span>
+          </button>
+          <button mat-menu-item (click)="onFilter(3,'price')">
+            <span>Yearly</span>
+          </button>
+        </mat-menu>
+      </div>
+    </mat-card-header>
+    <mat-card-content class="justify-center items-center h-[100%]" style="display: flex !important;">
+      <p class="text-4xl text-center text-[green] text-[40px]">{{totalOfOrders|egyCurrency}}</p>
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card class="example-card">
+
+    <mat-card-header class="flex justify-between">
+      <mat-card-title>Order Status</mat-card-title>
+      <div>
+        <button mat-icon-button [matMenuTriggerFor]="menu3" aria-label="Example icon-button with a menu">
+          <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #menu3="matMenu">
+          <button mat-menu-item (click)="onFilter(1,'status')">
+            <span>Daily</span>
+          </button>
+          <button mat-menu-item (click)="onFilter(2,'status')">
+            <span>Monthly</span>
+          </button>
+          <button mat-menu-item (click)="onFilter(3,'status')">
+            <span>Yearly</span>
+          </button>
+        </mat-menu>
+      </div>
+    </mat-card-header>
+
+    <mat-card-content>
+      <div class="chart-container">
+        <canvas  id="MyChart" >{{ chart }}</canvas>
+      </div>
+    </mat-card-content>
+
+
+  </mat-card>
+  
+</div>
+
+
+
+<mat-card class="example-card mt-16">
+
+  <mat-card-header class="flex justify-between">
+    <mat-card-title>Orders In Year</mat-card-title>
+  </mat-card-header>
+
+  <mat-card-content>
+    <div class="chart-container">
+      <canvas  id="MyBarChart" >{{ barChart }}</canvas>
+    </div>
+  </mat-card-content>
+
+</mat-card>
+

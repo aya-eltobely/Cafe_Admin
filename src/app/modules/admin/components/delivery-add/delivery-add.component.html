@@ -1,0 +1,100 @@
+<div class="p-10">
+
+
+    <h1> Add Delivery </h1>
+
+    <form [formGroup]="deliveryForm">
+
+        <mat-form-field class="example-full-width w-full">
+            <mat-label>First Name</mat-label>
+            <input matInput formControlName="firstName">
+            @if ( deliveryForm.get('firstName')?.hasError('required') && deliveryForm.get('firstName')?.touched ) {
+                <mat-error>first name is required</mat-error>
+            }
+        </mat-form-field>
+        
+
+        <mat-form-field class="example-full-width w-full">
+            <mat-label>Last Name</mat-label>
+            <input matInput formControlName="lastName">
+            @if ( deliveryForm.get('lastName')?.hasError('required') && deliveryForm.get('lastName')?.touched ) {
+                <mat-error>last name is required</mat-error>
+            }
+            
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width w-full">
+            <mat-label>User Name</mat-label>
+            <input matInput formControlName="userName">
+            @if ( deliveryForm.get('userName')?.hasError('required') && deliveryForm.get('userName')?.touched ) {
+                <mat-error>user name is required</mat-error>
+            }
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width w-full">
+            <mat-label>Email</mat-label>
+            <input matInput formControlName="email">
+            @if ( deliveryForm.get('email')?.hasError('required') && deliveryForm.get('email')?.touched ) {
+                <mat-error>email is required</mat-error>
+            }
+            @if ( deliveryForm.get('email')?.hasError('invalidEmail')) {
+                <mat-error>email must be valid</mat-error>
+            }
+            
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width w-full">
+            <mat-label>Password</mat-label>
+            <input matInput [type]="hidePass ? 'password' : 'text'" formControlName="password">
+            <button mat-icon-button matSuffix (click)="hidePass = !hidePass" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hidePass">
+                <mat-icon>{{hidePass ? 'visibility_off' : 'visibility'}}</mat-icon>
+              </button>
+            @if ( deliveryForm.get('password')?.hasError('required') && deliveryForm.get('password')?.touched ) {
+                <mat-error>password is required</mat-error>
+            }
+            @if ( deliveryForm.get('password')?.hasError('pattern') ) {
+                <mat-error>password must be Minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character</mat-error>
+            }
+            
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width w-full">
+            <mat-label>Confirm Password</mat-label>
+            <input matInput [type]="hideConfirmPass ? 'password' : 'text'" formControlName="confirmPassword">
+            <button mat-icon-button matSuffix (click)="hideConfirmPass = !hideConfirmPass" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hideConfirmPass">
+                <mat-icon>{{hideConfirmPass ? 'visibility_off' : 'visibility'}}</mat-icon>
+              </button>
+            @if ( deliveryForm.get('confirmPassword')?.hasError('required') && deliveryForm.get('confirmPassword')?.touched ) {
+                <mat-error>confirme password is required</mat-error>
+            }
+            @if ( deliveryForm.get('confirmPassword')?.hasError('pattern') ) {
+                <mat-error>confirme password must be Minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character:</mat-error>
+            }
+        </mat-form-field>
+
+        @if ( deliveryForm.hasError('isNotMatch') ) {
+            <mat-error>password and confirm password not matching</mat-error>
+        }
+
+        <mat-form-field class="example-full-width w-full">
+            <mat-label>Phone Number</mat-label>
+            <input matInput formControlName="phoneNumber">
+            @if ( deliveryForm.get('phoneNumber')?.hasError('required') && deliveryForm.get('phoneNumber')?.touched ) {
+                <mat-error>phone number is required</mat-error>
+            }
+        </mat-form-field>
+
+    </form>
+
+
+
+    <div class="w-full">
+        <button mat-raised-button class="mr-2 BgPurpleColor" 
+            (click)="onAddDelivery()"  >
+            Add
+        </button>
+
+        <button mat-stroked-button   (click)="onClose()">Close</button>
+    </div>
+
+</div>

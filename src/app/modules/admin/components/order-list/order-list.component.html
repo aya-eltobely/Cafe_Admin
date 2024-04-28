@@ -1,0 +1,159 @@
+<div class="demo-button-container mb-[20px] flex justify-between w-full">
+  <h1> All Order </h1>
+
+  <button (click)="toggle()" mat-mini-fab color="primary" class="ml-2 BgPurpleColor"
+        style="border-radius: 50%; margin-left: 8px;">
+        <mat-icon class="text-white"> search </mat-icon>
+    </button>
+
+</div>
+
+<div class="my-5">
+  <mat-accordion class="example-headers-align " multi>
+      <mat-expansion-panel [@collapseExpand]="state" [expanded]="state">
+
+
+          <div class="flex gap-2 pt-4">
+            <mat-form-field>
+              <mat-label>Filter</mat-label>
+              <input matInput (keyup)="applyFilter($event)" #input>
+            </mat-form-field>
+          </div>
+      </mat-expansion-panel>
+  </mat-accordion>
+</div>
+
+
+<div class="mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource" class=" overscroll-y-auto">
+
+    <!-- Position Column -->
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef> No. </th>
+      <td mat-cell *matCellDef="let element,let i=index"> {{i+1}} </td>
+    </ng-container>
+
+    <!--userFullName Column -->
+    <ng-container matColumnDef="userFullName">
+      <th mat-header-cell *matHeaderCellDef> Order By </th>
+      <td mat-cell *matCellDef="let element"> {{element.userFullName}} </td>
+    </ng-container>
+
+
+
+
+    <!-- date Column -->
+    <ng-container matColumnDef="date">
+      <th mat-header-cell *matHeaderCellDef> Date </th>
+      <td mat-cell *matCellDef="let element"> {{element.date | date }} </td>
+    </ng-container>
+
+    <!-- orderTotals Column -->
+    <ng-container matColumnDef="orderTotals">
+      <th mat-header-cell *matHeaderCellDef> Order Total </th>
+      <td mat-cell *matCellDef="let element"> {{element.orderTotals | egyCurrency}} </td>
+    </ng-container>
+
+    <!--address Column -->
+    <ng-container matColumnDef="address">
+      <th mat-header-cell *matHeaderCellDef> Address </th>
+      <td mat-cell *matCellDef="let element"> {{element.address}} </td>
+    </ng-container>
+
+
+    <!-- orderTotals Column -->
+    <ng-container matColumnDef="assignto">
+      <th mat-header-cell *matHeaderCellDef> Assign To </th>
+      <td mat-cell *matCellDef="let element">
+        @if(element.deliveryFullName ==" "){
+          -
+        }
+        @else {
+          <mat-chip-set aria-label="Dog selection">
+            <mat-chip>{{element.deliveryFullName}}</mat-chip>
+          </mat-chip-set>
+        }
+        
+      </td>
+    </ng-container>
+
+
+
+    <!-- deliveryStatus Column -->
+    <ng-container matColumnDef="deliveryStatus">
+      <th mat-header-cell *matHeaderCellDef> Delivery Status </th>
+      <td mat-cell *matCellDef="let element"> {{element.deliveryStatus}} </td>
+    </ng-container>
+
+
+    <!-- status Column -->
+    <ng-container matColumnDef="status">
+      <th mat-header-cell *matHeaderCellDef> Status </th>
+      <td mat-cell *matCellDef="let element">
+        @if(element.status == 'Pendding'){
+        <mat-icon class="text-[blue]">timer</mat-icon>
+        }
+        @else if (element.status == 'Rejected') {
+        <mat-icon class="text-[red]">close</mat-icon>
+        }
+        @else if (element.status == 'Approved') {
+        <mat-icon class="text-[green]">check</mat-icon>
+        }
+      </td>
+    </ng-container>
+
+    <!-- Action Column -->
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef>Actions</th>
+      <td mat-cell *matCellDef="let element">
+
+        
+
+        @if( ! ( element.status == 'Approved' && (element.deliveryStatus == 'Pendding' || element.deliveryStatus == 'OnWay' || element.deliveryStatus == 'Done' || element.deliveryStatus == 'DeclineByUser'  ) )  )
+        {
+          <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+            <mat-icon>more_vert</mat-icon>
+          </button>
+
+          <mat-menu #menu="matMenu">
+
+            @if (element.status == 'Pendding') 
+            {
+              <button mat-menu-item (click)="onReject(element.id)">
+                <span>reject</span>
+              </button>
+              <button mat-menu-item (click)="onApprove(element.id)">
+                <span>Approve</span>
+              </button>
+              <button mat-menu-item (click)="onDelete(element.id)">
+                <span class="text-[red]"> Delete </span>
+              </button>
+            }
+            @else if (element.status == 'Rejected') 
+            {
+              <button mat-menu-item (click)="onDelete(element.id)" >
+                <span class="text-[red]"> Delete </span>
+              </button>
+            }
+            @else if (element.status == 'Approved' && element.deliveryStatus == 'Waiting' ) 
+            {
+              <button mat-menu-item (click)="onAssignToDelivery(element.id)"  >
+                <span>Assign To Delivery</span>
+              </button>
+              <button mat-menu-item (click)="onDelete(element.id)">
+                <span class="text-[red]"> Delete </span>
+              </button>
+            }
+          </mat-menu>
+        }
+ 
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <mat-paginator [length]="100" [pageSize]="10" [pageSizeOptions]="[10]" aria-label="Select page">
+  </mat-paginator>
+</div>

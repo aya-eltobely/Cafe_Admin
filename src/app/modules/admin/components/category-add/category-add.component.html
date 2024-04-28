@@ -1,0 +1,26 @@
+
+
+<div class="p-10">
+
+  
+    <h1> Add Category </h1>
+
+
+
+        <mat-form-field class="example-full-width w-full">
+            <mat-label>Category</mat-label>
+            <input matInput [(ngModel)]="productName">
+        </mat-form-field>
+
+    
+    
+    <div class="w-full">
+            <button mat-raised-button class="mr-2 BgPurpleColor"
+                (click)="onAddData()">
+                Add
+            </button>
+    
+            <button mat-stroked-button (click)="onClose()">Close</button>
+    </div>
+
+</div>
